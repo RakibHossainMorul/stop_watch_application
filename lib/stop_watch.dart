@@ -13,8 +13,8 @@ class StopWatchApp extends StatefulWidget {
 
 class _StopWatchAppState extends State<StopWatchApp> {
   //define business logics
-  int seconds = 0, minutes = 0, hours = 0;
-  String digitsSeconds = "00", digitsMinutes = "00", digitsHours = "00";
+  var seconds = 0, minutes = 0, hours = 0;
+  var digitsSeconds = "00", digitsMinutes = "00", digitsHours = "00";
   Timer? timer;
   bool started = false;
   List laps = [];
@@ -45,7 +45,7 @@ class _StopWatchAppState extends State<StopWatchApp> {
   //Create addLap funtion for addding timer data to laps variable
 
   void addLap() {
-    String lap = "$digitsHours,$digitsMinutes,$digitsSeconds";
+    var lap = "$digitsHours:$digitsMinutes:$digitsSeconds";
     setState(() {
       laps.add(lap);
     });
@@ -120,14 +120,14 @@ class _StopWatchAppState extends State<StopWatchApp> {
                 ),
                 child: ListView.builder(
                     itemCount: laps.length,
-                    itemBuilder: (context, index) {
+                    itemBuilder: (context, int index) {
                       return Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Lap no : ${index + 1}",
+                              "Lap no ${index + 1}",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
